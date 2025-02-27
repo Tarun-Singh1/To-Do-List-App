@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 
-const IMAGE_API_KEY = process.env.REACT_APP_IMAGE_API_KEY;
-
 function BackgroundImage() {
   const [imageUrl, setImageUrl] = useState("");
 
@@ -15,7 +13,7 @@ function BackgroundImage() {
           {
             params: { query: "landscape", orientation: "landscape" },
             headers: {
-              Authorization: `Client-ID ${IMAGE_API_KEY}`,
+              Authorization: `Client-ID DaQC6PdAZMvQXT7qhIYuT6n4hEWXhvzhlcdgaEid4vU`,
             },
           }
         );

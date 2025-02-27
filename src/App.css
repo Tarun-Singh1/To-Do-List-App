@@ -256,3 +256,18 @@ Added-Items */
   background-color: rgba(0, 0, 0, 0.1); /* Semi-transparent overlay */
   z-index: -1; /* Ensure it is behind other content */
 }
+
+.clear-tasks-button {
+  margin-top: 20px;
+  padding: 17px 20px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: large;
+}
+
+.clear-tasks-button:hover {
+  background-color: #ff1a1a;
+}

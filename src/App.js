@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import DateTime from "./DateTime";
 import "./App.css";
 import BackgroundImage from "./BackgroundImage";
+import ClearTasksButton from "./ClearTasksButton";
 const LOCAL_STORAGE_KEY = "tasks";
 
 // const initialTasks = [
@@ -51,6 +52,9 @@ function App() {
       )
     );
   }
+  function handleClearTasks() {
+    setTasks([]);
+  }
 
   return (
     <div className="App">
@@ -64,6 +68,7 @@ function App() {
         onMarkDone={handleMarkDone}
         onEditTask={handleEditTask}
       />
+      <ClearTasksButton onClearTasks={handleClearTasks} />
       <Advice />
     </div>
   );
