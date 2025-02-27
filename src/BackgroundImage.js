@@ -13,7 +13,7 @@ function BackgroundImage() {
           {
             params: { query: "landscape", orientation: "landscape" },
             headers: {
-              Authorization: `Client-ID DaQC6PdAZMvQXT7qhIYuT6n4hEWXhvzhlcdgaEid4vU`,
+              Authorization: `Client-ID ${process.env.REACT_APP_UNSPLASH_API_KEY}`,
             },
           }
         );
