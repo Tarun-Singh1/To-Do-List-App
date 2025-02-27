@@ -8,6 +8,7 @@ import DateTime from "./DateTime";
 import "./App.css";
 import BackgroundImage from "./BackgroundImage";
 import ClearTasksButton from "./ClearTasksButton";
+import Timer from "./Timer";
 const LOCAL_STORAGE_KEY = "tasks";
 
 // const initialTasks = [
@@ -60,16 +61,23 @@ function App() {
     <div className="App">
       <BackgroundImage />
       <Header />
+
       <DateTime />
-      <AddItems onAddTask={handleAddTask} />
+      <div className="task-controls">
+        <AddItems onAddTask={handleAddTask} />
+        <ClearTasksButton onClearTasks={handleClearTasks} />
+      </div>
+      {/* <AddItems onAddTask={handleAddTask} /> */}
       <AddedItems
         tasks={tasks}
         onDeleteTask={handleDeleteTask}
         onMarkDone={handleMarkDone}
         onEditTask={handleEditTask}
       />
-      <ClearTasksButton onClearTasks={handleClearTasks} />
+      {/* <ClearTasksButton onClearTasks={handleClearTasks} /> */}
+
       <Advice />
+      <Timer />
     </div>
   );
 }

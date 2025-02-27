@@ -33,19 +33,20 @@ body {
 /* //Header Component */
 
 header {
-  min-height: 20vh;
+  min-height: 10vh;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: #007bff;
+  color: #003092;
 }
 
 header h1 {
   margin: 0;
   font-size: 4rem;
   font-family: "Roboto", sans-serif;
+  color: #003092;
 }
 
 /* AddItem styling */
@@ -60,27 +61,29 @@ header h1 {
   padding: 15px;
   font-size: 18px;
   border: 2.5px solid #007bff;
+  /* border: 2.5px solid #f4e1c1; */
   border-radius: 50px;
   margin-right: 10px;
   width: 300px;
 }
 
 .addItems input[type="text"]:focus {
-  border-color: #007bff;
+  border-color: #003092;
 }
 
 .addItems .add-btn {
   padding: 14px 25px;
   font-size: 21px;
   color: white;
-  background-color: #007bff;
+  background-color: #003092;
+  /* background-color: #27ae60; */
   border: none;
-  border-radius: 25px;
+  border-radius: 40px;
   cursor: pointer;
 }
 
 .addItems .add-btn:hover {
-  background-color: #0056b3;
+  background-color: #012978;
 }
 
 /* 
@@ -97,7 +100,8 @@ Added-Items */
 .added-task {
   background-color: #f9f9f9;
   padding: 20px;
-  margin: 40px 0;
+  margin: 30px 0;
+  margin-top: 0;
   border: 2px solid #ddd;
   border-radius: 40px;
   font-size: 21px;
@@ -225,7 +229,7 @@ Added-Items */
   text-align: center;
   margin: 20px 0;
   font-size: 1.5rem;
-  color: #333;
+  color: #00879e;
 }
 
 .date {
@@ -257,15 +261,25 @@ Added-Items */
   z-index: -1; /* Ensure it is behind other content */
 }
 
+/* Task Controls */
+.task-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
 .clear-tasks-button {
-  margin-top: 20px;
+  /* margin-top: 20px; */
   padding: 17px 20px;
-  background-color: #ff4d4d;
+  background-color: #e52020;
   color: white;
   border: none;
   border-radius: 40px;
   cursor: pointer;
-  font-size: large;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .clear-tasks-button:hover {

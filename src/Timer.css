@@ -1,0 +1,100 @@
+.timer-app {
+  text-align: center;
+  /* background: #ffffff; */
+  /* background-color: rgba(255, 255, 255, 0.8); */
+  background-color: wheat;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 250px;
+  margin: 20px auto;
+}
+
+.timer-app h1 {
+  font-size: 25px;
+  color: #443627;
+}
+
+.timer-circle {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 10px auto;
+  z-index: 1;
+}
+
+.timer-circle svg {
+  width: 100px;
+  height: 100px;
+  transform: rotate(-90deg);
+}
+
+.timer-circle circle {
+  fill: none;
+  stroke-width: 10;
+  stroke-linecap: round;
+}
+
+.timer-circle .background {
+  /* stroke: #ddd; */
+  stroke: #d98324;
+}
+
+.timer-circle .progress {
+  stroke: #4caf50;
+  stroke-dasharray: 282.6;
+  stroke-dashoffset: 282.6;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.timer-display {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 10px;
+}
+
+.controls input {
+  padding: 5px 5px 5px 22px;
+  width: 80px;
+  font-size: 14px;
+  border: 1px solid #d98324;
+  border-radius: 40px;
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.buttons button {
+  padding: 8px 10px;
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
+  color: rgb(243, 243, 243);
+  background-color: #43a346;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.buttons button:hover {
+  background-color: #41644a;
+}
+
+.buttons button:disabled {
+  background-color: #9e9e9e;
+  cursor: not-allowed;
+}

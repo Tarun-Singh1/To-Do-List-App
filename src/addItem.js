@@ -7,7 +7,7 @@ function AddItems({ onAddTask }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!task) return;
+    if (task.trim() === "") return;
 
     const newTask = { id: crypto.randomUUID(), task };
     onAddTask(newTask);
