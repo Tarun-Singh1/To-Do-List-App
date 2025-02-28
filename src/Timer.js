@@ -1,11 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./Timer.css";
+import oldTimerSound from "./old_timer.mp3";
 
 function Timer() {
   const [minutes, setMinutes] = useState("");
   const [seconds, setSeconds] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [totalTime, setTotalTime] = useState(0);
+  const [streak, setStreak] = useState(0);
+  const [weeklyProgress, setWeeklyProgress] = useState({});
+  const [showWeeklyProgress, setShowWeeklyProgress] = useState(false);
+
+  const updateStreak = useCallback(() => {
+    const today = new Date().toLocaleDateString();
+    const newStreak = streak + 1;
+    setStreak(newStreak);
+
+    const updatedProgress = { ...weeklyProgress, [today]: newStreak };
+    setWeeklyProgress(updatedProgress);
+    localStorage.setItem("weeklyProgress", JSON.stringify(updatedProgress));
+  }, [streak, weeklyProgress]);
 
   useEffect(() => {
     let timer;
@@ -17,10 +31,11 @@ function Timer() {
     } else if (totalTime === 0 && isRunning) {
       triggerNotification(); // Show notification
       resetTimer(); // Reset the timer when time runs out
+      updateStreak(); // Update the streak
     }
 
     return () => clearInterval(timer);
-  }, [isRunning, totalTime]);
+  }, [isRunning, totalTime, updateStreak]);
 
   const startTimer = () => {
     const totalSeconds = parseInt(minutes) * 60;
@@ -54,6 +69,15 @@ function Timer() {
         body: "Your timer has finished.",
         icon: "https://cdn-icons-png.flaticon.com/512/2942/2942871.png", // You can replace this with any timer icon URL
       });
+
+      // Vibration (for devices that support it)
+      if (navigator.vibrate) {
+        navigator.vibrate([200, 100, 200]);
+      }
+
+      // Play the imported sound
+      const audio = new Audio(oldTimerSound);
+      audio.play();
     } else {
       alert("Time is over!"); // Fallback for browsers that don’t support notifications
     }
@@ -65,9 +89,32 @@ function Timer() {
       Notification.permission !== "granted" &&
       Notification.permission !== "denied"
     ) {
-      Notification.requestPermission();
+      Notification.requestPermission().then((permission) => {
+        if (permission === "granted") {
+          console.log("Notification permission granted.");
+        } else {
+          console.log("Notification permission denied.");
+        }
+      });
+    }
+
+    // Load weekly progress from localStorage
+    const storedProgress =
+      JSON.parse(localStorage.getItem("weeklyProgress")) || {};
+    setWeeklyProgress(storedProgress);
+
+    // Reset streak if the date has changed
+    const today = new Date().toLocaleDateString();
+    if (storedProgress[today]) {
+      setStreak(storedProgress[today]);
+    } else {
+      setStreak(0);
     }
   }, []);
+
+  const toggleWeeklyProgress = () => {
+    setShowWeeklyProgress(!showWeeklyProgress);
+  };
 
   return (
     <div className="timer-app">
@@ -99,6 +146,24 @@ function Timer() {
           </button>
           <button onClick={resetTimer}>Reset</button>
         </div>
+      </div>
+      <div className="streak">
+        <p>Today's Streak: {streak}🔥</p>
+        <button onClick={toggleWeeklyProgress}>
+          {showWeeklyProgress ? "Hide Weekly Progress" : "Show Weekly Progress"}
+        </button>
+        {showWeeklyProgress && (
+          <div className="weekly-progress">
+            <h2>Weekly Progress</h2>
+            <ul>
+              {Object.entries(weeklyProgress).map(([date, count]) => (
+                <li key={date}>
+                  {date}: {count} timers
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
